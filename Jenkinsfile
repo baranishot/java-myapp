@@ -1,7 +1,12 @@
-node{
-   stage('SCM Checkout'){
-     git 'https://github.com/javahometech/my-app'
-   }
+pipeline {
+    agent { label 'dev-agent' }
+    
+    stages{
+        stage('Code'){
+            steps {
+                git url: 'https://github.com/baranishot/java-myapp', branch: 'master'
+            }
+        }
    stage('Compile-Package'){
       // Get maven home path
       def mvnHome =  tool name: 'maven-3', type: 'maven'   
